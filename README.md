@@ -6,43 +6,55 @@ To deploy a highly scalable, secured and highly available Java Web Application u
 internet.
 
 # Outline
-- [ ] [Pre-Deployment](#pre-deployment)
-  + [ ] [Create Global AMI](#create-global-ami)   
-  + [ ] [Create Golden AMI for NGINX](#create-golden-ami-for-nginx)  
-  + [ ] [Create Golden AMI for Apache Tomcat](#create-golden-ami-for-apache-tomcat)  
-  + [ ] [Create Golden AMI for Apache Maven Build Tool](#create-golden-ami-for-apache-maven-build-tool)  
-- [ ] [VPC Deployment And Bastion Host](#vpc-deployment-and-bastion-host)  
-- [ ] [Maven Build](#maven-build)  
-- [ ] [AWS 3-Tier Architecture](#aws-3-tier-architecture)  
-  + [ ] [Database (RDS)](#database)  
-  + [ ] [Tomcat](#tomcat)  
-  + [ ] [NGINX](#nginx)  
-- [ ] [Application Deployment](#application-deployment)  
-- [ ] [Post Deployment](#post-deployment)  
-- [ ] [Validation & Cleanup](#validation-and-cleanup)  
+- [Pre-Deployment](#pre-deployment)
+  + [Create Global AMI](#create-global-ami)   
+  + [Create Golden AMI for NGINX](#create-golden-ami-for-nginx)  
+  + [Create Golden AMI for Apache Tomcat](#create-golden-ami-for-apache-tomcat)  
+  + [Create Golden AMI for Apache Maven Build Tool](#create-golden-ami-for-apache-maven-build-tool)  
+- [VPC Deployment And Bastion Host](#vpc-deployment-and-bastion-host)  
+- [Maven Build](#maven-build)  
+- [AWS 3-Tier Architecture](#aws-3-tier-architecture)  
+  + [Database (RDS)](#database)  
+  + [Tomcat](#tomcat)  
+  + [NGINX](#nginx)  
+- [Application Deployment](#application-deployment)  
+- [Post Deployment](#post-deployment)  
+- [Validation & Cleanup](#validation-and-cleanup)  
 
 # Details
+
 ## Pre-Deployment
+
 ### Create Golden AMI
 A Golden AMI is a modified image created from a base AMI EC2 instance after installing required patches, updates and software. This acts as a template to launch further 
 instances which will then include all the updates and changes made by the user. To create a Golden AMI, we first create a base EC2 instance from an existing AMI like Amazon 
 Linux 2.
-- Install AWS CLI
-- Install AWS CloudWatch Agent
-- Install AWS SSM Agent
+
+- [ ] Install AWS CLI
+- [ ] Install AWS CloudWatch Agent
+- [ ] Install AWS SSM Agent
+
 ### Create Golden AMI for NGINX
-- Install NGINX
-- Push custom memory metrics to CloudWatch Agent
+On top of having our previous 3 software installed, this AMI will have further NGINX packages and it's dependencies installed as a start.
+
+- [ ] Install NGINX
+- [ ] Push custom memory metrics to CloudWatch Agent
+
 ### Create Golden AMI for Apache Tomcat
-- Install Tomcat
-- Configure Tomcat as a systemd service
-- Install JDK 11
-- Push custom memory metrics to CloudWatch Agent
+This Golden AMI will have Tomcat and all the dependencies installed and configured.
+
+- [ ] Install Tomcat
+- [ ] Configure Tomcat as a systemd service
+- [ ] Install JDK 11
+- [ ] Push custom memory metrics to CloudWatch Agent
+
 ### Create Golden AMI for Apache Maven Build Tool
-- Install Maven
-- Install Git
-- Install JDK 11
-- Add Maven Home to system PATH variable
+This Golden AMI will have the Apache Maven Build Tool installed and configured to go.
+
+- [ ] Install Maven
+- [ ] Install Git
+- [ ] Install JDK 11
+- [ ] Add Maven Home to system PATH variable
 
 ## VPC Deployment and Bastion Host
 ### VPC Setup

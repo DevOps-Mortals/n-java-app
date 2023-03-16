@@ -30,9 +30,13 @@ A Golden AMI is a modified image created from a base AMI EC2 instance after inst
 instances which will then include all the updates and changes made by the user. To create a Golden AMI, we first create a base EC2 instance from an existing AMI like Amazon 
 Linux 2.
 
-- [ ] Install AWS CLI
-- [ ] Install AWS CloudWatch Agent
-- [ ] Install AWS SSM Agent
+:white_check_mark: Install AWS CLI
+
+:white_check_mark: Install AWS CloudWatch Agent
+
+:white_check_mark: Install AWS SSM Agent
+
+:white_check_mark: Create new AMI based on this
 
 ### Create Golden AMI for NGINX
 On top of having our previous 3 software installed, this AMI will have further NGINX packages and it's dependencies installed as a start.

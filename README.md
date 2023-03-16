@@ -7,19 +7,19 @@ internet.
 
 # Outline
 - [Pre-Deployment](#pre-deployment)
-  + [Create Global AMI](#create-global-ami)   
-  + [Create Golden AMI for NGINX](#create-golden-ami-for-nginx)  
-  + [Create Golden AMI for Apache Tomcat](#create-golden-ami-for-apache-tomcat)  
-  + [Create Golden AMI for Apache Maven Build Tool](#create-golden-ami-for-apache-maven-build-tool)  
-- [VPC Deployment And Bastion Host](#vpc-deployment-and-bastion-host)  
-- [Maven Build](#maven-build)  
+  + [] [Create Global AMI](#create-global-ami)   
+  + [] [Create Golden AMI for NGINX](#create-golden-ami-for-nginx)  
+  + [] [Create Golden AMI for Apache Tomcat](#create-golden-ami-for-apache-tomcat)  
+  + [] [Create Golden AMI for Apache Maven Build Tool](#create-golden-ami-for-apache-maven-build-tool)  
+-  [] [VPC Deployment And Bastion Host](#vpc-deployment-and-bastion-host)  
+- [] [Maven Build](#maven-build)  
 - [AWS 3-Tier Architecture](#aws-3-tier-architecture)  
-  + [Database (RDS)](#database)  
-  + [Tomcat](#tomcat)  
-  + [NGINX](#nginx)  
-- [Application Deployment](#application-deployment)  
-- [Post Deployment](#post-deployment)  
-- [Validation & Cleanup](#validation-and-cleanup)  
+  + [] [Database (RDS)](#database)  
+  + [] [Tomcat](#tomcat)  
+  + [] [NGINX](#nginx)  
+- [] [Application Deployment](#application-deployment)  
+- [] [Post Deployment](#post-deployment)  
+- [] [Validation & Cleanup](#validation-and-cleanup)  
 
 # Details
 ## Pre-Deployment

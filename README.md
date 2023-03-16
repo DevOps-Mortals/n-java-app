@@ -6,14 +6,14 @@ To deploy a highly scalable, secured and highly available Java Web Application u
 internet.
 
 # Outline
-- [Pre-Deployment](#pre-deployment)
+- [ ] [Pre-Deployment](#pre-deployment)
   + [ ] [Create Global AMI](#create-global-ami)   
   + [ ] [Create Golden AMI for NGINX](#create-golden-ami-for-nginx)  
   + [ ] [Create Golden AMI for Apache Tomcat](#create-golden-ami-for-apache-tomcat)  
   + [ ] [Create Golden AMI for Apache Maven Build Tool](#create-golden-ami-for-apache-maven-build-tool)  
--  [ ] [VPC Deployment And Bastion Host](#vpc-deployment-and-bastion-host)  
+- [ ] [VPC Deployment And Bastion Host](#vpc-deployment-and-bastion-host)  
 - [ ] [Maven Build](#maven-build)  
-- [AWS 3-Tier Architecture](#aws-3-tier-architecture)  
+- [ ] [AWS 3-Tier Architecture](#aws-3-tier-architecture)  
   + [ ] [Database (RDS)](#database)  
   + [ ] [Tomcat](#tomcat)  
   + [ ] [NGINX](#nginx)  

@@ -1,37 +1,44 @@
-## Java Login App ##
-Testing 
+# Deploying a Java Web Application on AWS 3-Tier Architecture
+This is an implementation of the original project challenge posted [here](https://devopsrealtime.com/deploy-java-application-on-aws-3-tier-architecture/)
 
-## Sample Java Login application uses "UserDB" database and Table schema to store the Employee Login details. ##
+### Goal
+To deploy a highly scalable, secured and highly available Java Web Application using the AWS 3-Tier architecture and provide access from to end users from the public 
+internet.
+### Outline
+##### Create Global AMI
+- Install AWS CLI
+- Install AWS CloudWatch Agent
+- Install AWS SSM Agent
 
-## How to see list of Databases ##
-SHOW DATABASES;
+##### Create Golden AMI for NGINX
+- Install NGINX
+- Push custom memory metrics to CloudWatch Agent
 
-## How to create Database ##
+##### Create Golden AMI for Apache Tomcat
+- Install Tomcat
+- Configure Tomcat as a systemd service
+- Install JDK 11
+- Push custom memory metrics to CloudWatch Agent
 
-CREATE DATABASE UserDB;
+##### Create Golden AMI for Apache Maven Build Tool
+- Install Maven
+- Install Git
+- Install JDK 11
+- Add Maven Home to system PATH variable
 
-## How to list Tables ##
+##### VPC Deployment and Bastion Host
 
-USE UserDB;
+##### Maven Build
 
-SHOW TABLES;
+##### AWS 3-Tier Architecture
+**Database (RDS)**
+**Tomcat (Backend)**
+**NGINX (Frontend)**
 
-## How to create Table ##
-## Below Query to create require TABLE schema to store Employee records ##
+##### Application Deployment
 
-CREATE TABLE Employee (
-  id int unsigned auto_increment not null,
-  first_name varchar(250),
-  last_name varchar(250),
-  email varchar(250),
-  username varchar(250),
-  password varchar(250),
-  regdate timestamp,
-  primary key (id)
-);
+##### Post Deployment
 
-## List Table data ##
-SELECT * FROM Employee;
+##### Validation & Cleanup
 
-## Describe Table schema ##
-DESCRIBE Employee;
+

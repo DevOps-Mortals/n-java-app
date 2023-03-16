@@ -23,7 +23,10 @@ internet.
 
 # Details
 ## Pre-Deployment
-### Create Global AMI
+### Create Golden AMI
+A Golden AMI is a modified image created from a base AMI EC2 instance after installing required patches, updates and software. This acts as a template to launch further 
+instances which will then include all the updates and changes made by the user. To create a Golden AMI, we first create a base EC2 instance from an existing AMI like Amazon 
+Linux 2.
 - Install AWS CLI
 - Install AWS CloudWatch Agent
 - Install AWS SSM Agent

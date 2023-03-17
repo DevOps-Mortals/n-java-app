@@ -94,17 +94,191 @@ Now, every time you use this AMI to create an instance, it will come pre-install
 
 ### Create Golden AMI for NGINX
 
-On top of having our previous 3 software installed, this AMI will have further NGINX packages and it's dependencies ins>                                                                                                                        
-- Install NGINX                                                                                                     
-- Push custom memory metrics to CloudWatch Agent
+You can alternatively simply create an EC2 instance and install NGINX on it, if you do not wish to create an NGINX specific AMI.
+
+To install NGINX on the instance
+
+```bash
+sudo apt install -y nginx
+```
+
+Verify if the NGINX service is started and running.
+
+```bash
+sudo systemctl status nginx.service
+```
+
+#### Configure CloudWatchAgent for Metrics
+
+Once our NGINX instance is ready, we will configure the CWA to start sending metrics.
+
+```bash
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-config-wizard
+```
+
+![](images/pre-deployment/cw-configure.png)
+
+You can keep most of the values in this wizard to defaults, however, select '**No**' for the following:
+
+1. Do you want to monitor metrics from CollectD? -> No
+2. Do you want to monitor any log files? -> No
+3. Do you want to store the config files in the SSM parameter store? -> No
+
+The options which you could change could be to say no to selecting log files. When prompted to store the config in the SSM Parameter store, select No. This means we are storing the config file locally. You can find the config file at this location:
+
+```bash
+/opt/aws/amazon-cloudwatch-agent/bin/config.json
+```
+
+Now, we have to start the CW Agent using the config file generated from the wizard.
+
+```bash
+sudo /opt/aws/amazon-cloudwatch-agent/bin/amazon-cloudwatch-agent-ctl -a fetch-config -m ec2 -s -c file:/opt/aws/amazon-cloudwatch-agent/bin/config.json
+```
+
+![](images/pre-deployment/starting-cwa.png)
+
+Finally, we can see that our CW Agent has started
+
+![](images/pre-deployment/cwa-running.png)
+
+And here is CloudWatch logging our metrics
+
+![](images/pre-deployment/cw-data.png)
 
 ### Create Golden AMI for Apache Tomcat
+
 This Golden AMI will have Tomcat and all the dependencies installed and configured.
 
-- Install Tomcat
-- Configure Tomcat as a systemd service
-- Install JDK 11
-- Push custom memory metrics to CloudWatch Agent
+#### User Setup
+
+It is recommended to run Tomcat as a separate non-privileged user. We will create a user named 'tomcat' so that the service can be run as that user.
+
+```bash
+sudo useradd -m -d /opt/tomcat -U -s /bin/false tomcat
+```
+
+> Note: Here, when we supply the `/bin/false` file, we ensure that it is not possible to log in as the user 'tomcat' on to the Ubuntu machine.
+
+#### Install JDK 11
+
+Since Tomcat is a Java web server, we need to install JDK first.
+
+```bash
+sudo apt install default-jdk
+```
+
+> Note: On Ubuntu 20.04 (which we are using), this will install JDK 11.
+
+Verify the java installation.
+
+```bash
+java --version
+```
+
+![](images/pre-deployment/java-version.png)
+
+#### Install Tomcat
+
+To install Tomcat, we will have to download the binary.
+
+```bash
+# Change to /tmp folder
+cd /tmp
+
+# Download binary
+wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.1.7/bin/apache-tomcat-10.1.7.tar.gz
+```
+
+Now, we extract the downloaded file
+
+```bash
+sudo tar xzvf apache-tomcat-10*tar.gz -C /opt/tomcat --strip-components=1
+```
+
+We will give ownership of these files to the 'tomat' user that we created earlier.
+
+```bash
+sudo chown -R tomcat:tomcat /opt/tomcat/
+sudo chmod -R u+x /opt/tomcat/bin
+```
+
+Now, we will create a `systemd` service for Tomcat. This ensures that Tomcat keeps quietly running in the  background and in case of a system restart, is started automatically. First, we need to get the Java runtime path.
+
+```bash
+sudo update-java-alternatives -l
+
+# Output
+java-1.11.0-openjdk-amd64	1111	/usr/lib/jvm/java-1.11.0-openjdk-amd64
+```
+
+The path in the third column is what we need.
+
+To create the 'systemd' service, we have to create a file named `tomcat.service` under `/etc/systemd/system`
+
+```bash
+sudo nano /etc/systemd/system/tomcat.service
+```
+
+In the editor, paste this text
+
+```ini
+[Unit]
+Description=Tomcat
+After=network.target
+
+[Service]
+Type=forking
+
+User=tomcat
+Group=tomcat
+
+Environment="JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk-amd64"
+Environment="JAVA_OPTS=-Djava.security.egd=file:///dev/urandom"
+Environment="CATALINA_BASE=/opt/tomcat"
+Environment="CATALINA_HOME=/opt/tomcat"
+Environment="CATALINA_PID=/opt/tomcat/temp/tomcat.pid"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+ExecStart=/opt/tomcat/bin/startup.sh
+ExecStop=/opt/tomcat/bin/shutdown.sh
+
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Reload the `systemd` daemon to refresh it with the new service.
+
+```bash
+sudo systemctl daemon-reload
+```
+
+Finally, we start the Tomcat service
+
+```bash
+sudo systemctl start tomcat
+```
+
+Your Tomcat service should now be running. To verify
+
+```bash
+sudo systemctl status tomcat.service
+```
+
+![](images/pre-deployment/tomcat-running.png)
+
+To make Tomcat run automatically upon system restart
+
+```bash
+sudo systemctl enable tomcat
+```
+
+#### Push custom memory metrics to CloudWatch Agent
+
+You can follow the same steps listed above in the NGINX creation to finish this step.
 
 ### Create Golden AMI for Apache Maven Build Tool
 This Golden AMI will have the Apache Maven Build Tool installed and configured to go.

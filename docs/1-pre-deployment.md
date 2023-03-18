@@ -324,5 +324,7 @@ export MAVEN_HOME=/opt/maven
 export PATH=${M2_HOME}/bin:${PATH}
 ```
 
+---
+
 [Phase 2- Networking Setup](/docs/2-networking-setup.md)
 

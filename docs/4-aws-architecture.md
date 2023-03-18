@@ -1,4 +1,4 @@
-## AWS 3-Tier Architecture
+## Phase 4 - AWS 3-Tier Architecture
 
 ### Database (RDS)
 - [ ] Deploy Multi-AZ MySQL RDS instance into private subnets
@@ -19,3 +19,9 @@
   + [ ] User Data to update proxy_pass rules in nginx.conf file and reload nginx service.
   + [ ] Security Group allowing Port 22 from Bastion Host and Port 80 from Public NLB.
 - [ ] Create Auto Scaling Group
+
+---
+
+[Phase 3: Maven Build](/docs/3-maven-build)
+
+[Phase 5: App Deployment](/docs/5-app-deployment.md)

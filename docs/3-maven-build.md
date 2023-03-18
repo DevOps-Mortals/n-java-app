@@ -1,4 +1,4 @@
-## Maven Build
+## Phase 3 - Maven Build
 
 - [ ] Create EC2 instance using Maven Golden AMI
 - [ ] Clone Bitbucket repository to VSCode and update the pom.xml with Sonar and JFROG deployment details.
@@ -9,3 +9,9 @@
 - [ ] Login to EC2 instance and clone the Bitbucket repository                                                          
 - [ ] Build the source code using  maven arguments "-s settings.xml"                                                    
 - [ ] Integrate Maven build with Sonar Cloud and generate analysis dashboard with default Quality Gate profile.
+
+---
+
+[Phase 2: Network Setup](/docs/2-networking-setup.md)
+
+[Phase 4: AWS Architecture](/docs/4-aws-architecture.md)

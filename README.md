@@ -59,10 +59,13 @@ This Golden AMI will have Tomcat and all the dependencies installed and configur
 ### Create Golden AMI for Apache Maven Build Tool
 This Golden AMI will have the Apache Maven Build Tool installed and configured to go.
 
-- [ ] Install Maven
-- [ ] Install Git
-- [ ] Install JDK 11
-- [ ] Add Maven Home to system PATH variable
+:white_check_mark: Install Maven
+
+:white_check_mark: Install Git
+
+:white_check_mark: Install JDK 11
+
+:white_check_mark: Add Maven Home to system PATH variable
 
 ## VPC Deployment and Bastion Host
 ### VPC Setup

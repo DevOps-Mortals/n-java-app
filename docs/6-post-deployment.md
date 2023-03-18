@@ -6,4 +6,4 @@
 
 [Phase 5: App Deployment](/docs/5-app-deployment.md)
 
-[Phase 7: Validation & Cleanup](/docs/validation-cleanup.md)
+[Phase 7: Validation & Cleanup](/docs/7-validation-cleanup.md)

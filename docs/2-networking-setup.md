@@ -10,3 +10,9 @@ In this phase, we will setup the AWS networks and a Bastion Host.
 ### Bastion Host Setup
 - [ ] Deploy Bastion Host in the Public Subnet with EIP associated.
 - [ ] Create Security Group allowing port 22 from public internet
+
+
+
+---
+
+[Phase 1: Pre-Deployment](/docs/1-pre-deployment.md)																																					[Phase 3: Maven Build](/docs/maven-build.md)

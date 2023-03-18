@@ -5,6 +5,6 @@
 
 ---
 
-[Phase 4: AWS Architecture](/docs/4-aws-architecture)
+[Phase 4: AWS Architecture](/docs/4-aws-architecture.md)
 
 [Phase 6: Post Deployment](/docs/6-post-deployment.md)

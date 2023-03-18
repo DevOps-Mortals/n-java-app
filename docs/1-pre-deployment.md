@@ -281,9 +281,50 @@ sudo systemctl enable tomcat
 You can follow the same steps listed above in the NGINX creation to finish this step.
 
 ### Create Golden AMI for Apache Maven Build Tool
-This Golden AMI will have the Apache Maven Build Tool installed and configured to go.
+We will now create an EC2 instance that will act as our Maven Build base.
 
-- Install Maven
-- Install Git
-- Install JDK 11
-- Add Maven Home to system PATH variable
+#### Install Git
+
+It is most likely that Git will be pre-installed. It comes pre-installed with Ubuntu 20.04, however it may not be the latest version. This should not be a problem.
+
+```bash
+git --version
+```
+
+#### Install JDK 11
+
+Maven works on Java so, like earlier, we will need to install JDK. Follow the same steps we used earlier to install JDK 11
+
+#### Install Maven
+
+Maven is a software that will help us 'build' our Java app to be ready to be published to the internet.
+
+```bash
+sudo apt install -y maven
+```
+
+To verify the installation,
+
+```bash
+mvn -version
+```
+
+We have to set up the Environment variables for Maven so the system can find it and execute it.
+
+```bash
+sudo nano /etc/profile.d/maven.sh
+```
+
+Add the following code to this file
+
+```ini
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export M2_HOME=/opt/maven
+export MAVEN_HOME=/opt/maven
+export PATH=${M2_HOME}/bin:${PATH}
+```
+
+---
+
+[Phase 2- Networking Setup](/docs/2-networking-setup.md)
+

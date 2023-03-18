@@ -41,16 +41,20 @@ Linux 2.
 ### Create Golden AMI for NGINX
 On top of having our previous 3 software installed, this AMI will have further NGINX packages and it's dependencies installed as a start.
 
-- [ ] Install NGINX
-- [ ] Push custom memory metrics to CloudWatch Agent
+:white_check_mark: Install NGINX
+
+:white_check_mark: Push custom memory metrics to CloudWatch Agent
 
 ### Create Golden AMI for Apache Tomcat
 This Golden AMI will have Tomcat and all the dependencies installed and configured.
 
-- [ ] Install Tomcat
-- [ ] Configure Tomcat as a systemd service
-- [ ] Install JDK 11
-- [ ] Push custom memory metrics to CloudWatch Agent
+:white_check_mark: Install Tomcat
+
+:white_check_mark: Configure Tomcat as a systemd service
+
+:white_check_mark: Install JDK 11
+
+:white_check_mark: Push custom memory metrics to CloudWatch Agent
 
 ### Create Golden AMI for Apache Maven Build Tool
 This Golden AMI will have the Apache Maven Build Tool installed and configured to go.

@@ -22,6 +22,6 @@
 
 ---
 
-[Phase 3: Maven Build](/docs/3-maven-build)
+[Phase 3: Maven Build](/docs/3-maven-build.md)
 
 [Phase 5: App Deployment](/docs/5-app-deployment.md)
